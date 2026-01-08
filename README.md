@@ -2,6 +2,8 @@
 
 Portfolio pessoal moderno desenvolvido com Vue.js 3, Tailwind CSS e efeitos profissionais de nível sênior.
 
+Acesse aqui: https://portfolio-online-mst.netlify.app/
+
 ## 🚀 Tecnologias
 
 - **Vue.js 3** - Framework JavaScript progressivo com Composition API
