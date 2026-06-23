@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --bg-dark: #1A1A2E;
+    --bg-dark: #0A0E1A;
     --text-light: #F0F0F0;
     --primary-color: #00BFFF;
-    --secondary-color: #FF7F50;
+    --secondary-color: #6366F1;
   }
 
   body {
@@ -51,11 +51,9 @@
     @apply glass rounded-2xl p-6 shadow-2xl;
   }
 
-  /* Gradient Text Animation */
+  /* Gradient Text */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary;
-    background-size: 200% auto;
-    animation: gradient 3s linear infinite;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
   }
 
   .shimmer-text {
@@ -115,7 +113,7 @@
     background: radial-gradient(
       circle at center,
       rgba(0, 191, 255, 0.1) 0%,
-      rgba(255, 127, 80, 0.1) 50%,
+      rgba(99, 102, 241, 0.1) 50%,
       transparent 70%
     );
     animation: rotate 20s linear infinite;

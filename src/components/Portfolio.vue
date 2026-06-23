@@ -1,10 +1,10 @@
 <template>
-  <section id="portfolio" ref="portfolioSection" class="section portfolio bg-dark-secondary relative overflow-hidden">
+  <section id="portfolio" ref="portfolioSection" class="section portfolio relative overflow-hidden">
     <!-- Tech Effects -->
     <div class="absolute inset-0 pointer-events-none">
       <!-- Hexagonal Pattern -->
       <div class="absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(circle, rgba(0, 191, 255, 0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
-      
+
       <!-- Code Comments -->
       <div class="absolute top-32 left-6 md:left-12 text-[10px] md:text-xs font-mono text-primary/20 opacity-70 hidden lg:block">
         <div class="opacity-0 animate-fade-in" style="animation-delay: 1s; animation-fill-mode: forwards;">
@@ -17,7 +17,7 @@
           <span class="text-secondary/60">//</span> Production ready
         </div>
       </div>
-      
+
       <!-- Corner Brackets -->
       <div class="absolute top-20 left-10 text-primary/15 opacity-50 hidden xl:block font-mono text-2xl">
         <div class="opacity-0 animate-fade-in" style="animation-delay: 2s; animation-fill-mode: forwards;">&lt;/&gt;</div>
@@ -25,13 +25,13 @@
       <div class="absolute bottom-20 right-10 text-primary/15 opacity-50 hidden xl:block font-mono text-2xl">
         <div class="opacity-0 animate-fade-in" style="animation-delay: 2.5s; animation-fill-mode: forwards;">{ }</div>
       </div>
-      
+
       <!-- Project Array Code -->
       <div class="absolute bottom-32 left-12 text-[10px] font-mono text-primary/15 opacity-60 hidden 2xl:block">
         <div class="opacity-0 animate-fade-in" style="animation-delay: 3s; animation-fill-mode: forwards;">projects.map()</div>
       </div>
     </div>
-    
+
     <div class="container relative z-10">
       <h2 class="section-title">
         <span class="gradient-text">Projetos</span>
@@ -45,7 +45,7 @@
           class="group relative glass rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
         >
           <!-- Project Image/Icon -->
-          <div class="relative h-32 sm:h-36 md:h-40 bg-gradient-to-br from-primary/10 via-dark-tertiary to-secondary/10 flex items-center justify-center overflow-hidden">
+          <div class="relative h-32 sm:h-36 md:h-40 bg-gradient-to-br via-dark-tertiary flex items-center justify-center overflow-hidden" :class="project.gradient">
             <div v-if="!project.image" class="text-4xl sm:text-5xl md:text-6xl opacity-50 group-hover:scale-110 transition-transform duration-300">
               {{ project.emoji }}
             </div>
@@ -114,30 +114,33 @@ const { elementRef: portfolioSection } = useScrollAnimation()
 const projects = [
   {
     title: 'Green Factory 5.0',
-    description: 'Sistema produtivo inteligente para Indústria 4.0 em parceria com UEA, CITS e Copal Fadect.',
-    tech: ['Angular', 'TypeScript', 'RxJS', 'Micro-frontends'],
+    description: 'Sistema produtivo inteligente para uma movelaria no interior do Amazonas, voltado à Indústria 4.0, em parceria com UEA, CITS, Copal e Fadect.',
+    tech: ['Indústria 4.0', 'Front-End', 'Sustentabilidade'],
     image: null,
     link: 'https://github.com/Marcossouzatavares?tab=repositories',
     featured: true,
-    emoji: '🏭'
+    emoji: '🏭',
+    gradient: 'from-primary/15 to-sky-600/10'
   },
   {
     title: 'Arara Delivery',
-    description: 'Plataforma de delivery com arquitetura moderna, micro-frontends e cloud solutions.',
-    tech: ['Angular', 'TypeScript', 'RxJS', 'Cloud'],
+    description: 'Plataforma de delivery desenvolvida como projeto pessoal, com arquitetura de frontend moderna.',
+    tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
     image: null,
     link: 'https://github.com/Marcossouzatavares?tab=repositories',
     featured: false,
-    emoji: '🚀'
+    emoji: '🚀',
+    gradient: 'from-secondary/15 to-violet-600/10'
   },
   {
-    title: 'Primordium',
-    description: 'Soluções web empresariais para análise de sistemas e infraestrutura de TI.',
-    tech: ['Vue.js', 'React.js', 'TypeScript', 'Tailwind'],
+    title: 'Site Ambiente Parintins',
+    description: 'Sistema desenvolvido em parceria com IFAM e a Prefeitura Municipal de Parintins, com foco em sustentabilidade ambiental.',
+    tech: ['Front-End', 'Sustentabilidade Ambiental'],
     image: null,
     link: 'https://github.com/Marcossouzatavares?tab=repositories',
     featured: false,
-    emoji: '💼'
+    emoji: '🌱',
+    gradient: 'from-accent/15 to-emerald-600/10'
   }
 ]
 </script>
