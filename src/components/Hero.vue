@@ -9,7 +9,7 @@
         <div class="relative flex-shrink-0">
           <div class="w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <img
-              src="/Marcos.jpg"
+              :src="photoSrc"
               alt="Foto de Marcos de Souza Tavares"
               class="w-full h-full object-cover"
             >
@@ -56,6 +56,8 @@
 </template>
 
 <script setup>
+const photoSrc = `${import.meta.env.BASE_URL}Marcos.jpg`
+
 const stats = [
   { value: '5+', label: 'Anos em tecnologia' },
   { value: '+25', label: 'Projetos realizados' },
