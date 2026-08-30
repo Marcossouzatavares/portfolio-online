@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marcossouzatavares.github.io/portfolio-online/sitemap.xml

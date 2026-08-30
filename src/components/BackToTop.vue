@@ -4,15 +4,16 @@
       v-if="isVisible"
       @click="scrollToTop"
       aria-label="Voltar ao topo"
-      class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full glass border border-white/10 flex items-center justify-center text-primary hover:text-dark hover:bg-primary hover:border-primary transition-colors duration-300 shadow-lg"
+      class="fixed bottom-6 right-5 sm:bottom-8 sm:right-8 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full surface flex items-center justify-center text-paper hover:text-ink hover:bg-accent hover:border-accent transition-colors duration-200"
     >
-      <i class="fas fa-arrow-up"></i>
+      <Icon name="arrow-up" class="w-5 h-5" />
     </button>
   </Transition>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import Icon from './Icon.vue'
 
 const isVisible = ref(false)
 

@@ -1,57 +1,49 @@
 <template>
-  <header class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 overflow-hidden">
-    <!-- Tech Effect -->
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none">
-      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 191, 255, 0.4) 1px, transparent 1px); background-size: 100% 3px;"></div>
-      <!-- Scanning line effect -->
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-1 animate-pulse" style="animation-duration: 3s;"></div>
-    </div>
-    <div class="container relative z-10">
-      <nav class="flex justify-between items-center py-3 md:py-5">
-        <a 
-          href="#home" 
-          @click.prevent="scrollToSection('home')" 
-          class="text-xl md:text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300"
+  <header class="fixed top-0 left-0 w-full z-50 bg-ink/90 backdrop-blur-sm border-b border-ink-line">
+    <div class="container">
+      <nav class="flex justify-between items-center py-4" aria-label="Navegação principal">
+        <a
+          href="#home"
+          @click.prevent="scrollToSection('home')"
+          class="font-display text-lg font-semibold text-paper"
         >
-          Marcos.dev
+          Marcos<span class="text-accent">.</span>dev
         </a>
-        <div class="hidden md:flex items-center gap-6 lg:gap-8">
+        <div class="hidden md:flex items-center gap-8">
           <a
             v-for="link in navLinks"
             :key="link.id"
             :href="`#${link.id}`"
             @click.prevent="scrollToSection(link.id)"
-            class="relative text-sm lg:text-base transition-colors duration-300 group"
-            :class="activeSection === link.id ? 'text-primary' : 'text-text-light hover:text-primary'"
+            class="relative text-body-sm transition-colors duration-200"
+            :class="activeSection === link.id ? 'text-accent' : 'text-muted hover:text-paper'"
+            :aria-current="activeSection === link.id ? 'true' : undefined"
           >
             {{ link.label }}
-            <span
-              class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300"
-              :class="activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'"
-            ></span>
           </a>
         </div>
-        <!-- Mobile Menu Button -->
-        <button 
+        <button
           @click="toggleMobileMenu"
-          class="md:hidden text-text-light hover:text-primary transition-colors p-2"
-          aria-label="Toggle menu"
+          class="md:hidden text-paper p-2 -mr-2"
+          :aria-expanded="isMobileMenuOpen"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menu de navegação"
         >
-          <i :class="isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" class="text-xl"></i>
+          <Icon :name="isMobileMenuOpen ? 'close' : 'menu'" class="w-6 h-6" />
         </button>
       </nav>
-      <!-- Mobile Menu -->
-      <div 
+      <div
         v-if="isMobileMenuOpen"
-        class="md:hidden py-4 space-y-3 border-t border-white/10 animate-slide-up"
+        id="mobile-menu"
+        class="md:hidden py-4 space-y-1 border-t border-ink-line"
       >
         <a
           v-for="link in navLinks"
           :key="link.id"
           :href="`#${link.id}`"
           @click.prevent="handleMobileNavClick(link.id)"
-          class="block text-base py-2 transition-colors duration-300"
-          :class="activeSection === link.id ? 'text-primary' : 'text-text-light hover:text-primary'"
+          class="block text-body-base py-2.5 transition-colors duration-200"
+          :class="activeSection === link.id ? 'text-accent' : 'text-muted hover:text-paper'"
         >
           {{ link.label }}
         </a>
@@ -63,6 +55,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useSmoothScroll } from '../composables/useSmoothScroll'
+import Icon from './Icon.vue'
 
 const { scrollToSection } = useSmoothScroll()
 const isMobileMenuOpen = ref(false)
@@ -71,7 +64,6 @@ const activeSection = ref('home')
 const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'Sobre Mim' },
-  { id: 'experience', label: 'Trajetória' },
   { id: 'skills', label: 'Habilidades' },
   { id: 'portfolio', label: 'Projetos' },
   { id: 'contact', label: 'Contato' }

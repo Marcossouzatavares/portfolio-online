@@ -1,146 +1,163 @@
 <template>
-  <section id="portfolio" ref="portfolioSection" class="section portfolio relative overflow-hidden">
-    <!-- Tech Effects -->
-    <div class="absolute inset-0 pointer-events-none">
-      <!-- Hexagonal Pattern -->
-      <div class="absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(circle, rgba(0, 191, 255, 0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
+  <section id="portfolio" ref="portfolioSection" class="section">
+    <div class="container">
+      <p class="kicker"><span class="kicker-index">03</span> Projetos</p>
+      <h2 class="section-title">Contexto, decisões e resultado</h2>
 
-      <!-- Code Comments -->
-      <div class="absolute top-32 left-6 md:left-12 text-[10px] md:text-xs font-mono text-primary/20 opacity-70 hidden lg:block">
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 1s; animation-fill-mode: forwards;">
-          <span class="text-secondary/60">//</span> Projects
-        </div>
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 1.8s; animation-fill-mode: forwards;">
-          <span class="text-secondary/60">//</span> Real-world solutions
-        </div>
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 2.5s; animation-fill-mode: forwards;">
-          <span class="text-secondary/60">//</span> Production ready
-        </div>
-      </div>
-
-      <!-- Corner Brackets -->
-      <div class="absolute top-20 left-10 text-primary/15 opacity-50 hidden xl:block font-mono text-2xl">
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 2s; animation-fill-mode: forwards;">&lt;/&gt;</div>
-      </div>
-      <div class="absolute bottom-20 right-10 text-primary/15 opacity-50 hidden xl:block font-mono text-2xl">
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 2.5s; animation-fill-mode: forwards;">{ }</div>
-      </div>
-
-      <!-- Project Array Code -->
-      <div class="absolute bottom-32 left-12 text-[10px] font-mono text-primary/15 opacity-60 hidden 2xl:block">
-        <div class="opacity-0 animate-fade-in" style="animation-delay: 3s; animation-fill-mode: forwards;">projects.map()</div>
-      </div>
-    </div>
-
-    <div class="container relative z-10">
-      <h2 class="section-title">
-        <span class="gradient-text">Projetos</span>
-      </h2>
-      
-      <!-- Improved Grid Layout -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        <div 
-          v-for="(project, index) in projects" 
-          :key="index"
-          class="group relative glass rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
-        >
-          <!-- Project Image/Icon -->
-          <div class="relative h-32 sm:h-36 md:h-40 bg-gradient-to-br via-dark-tertiary flex items-center justify-center overflow-hidden" :class="project.gradient">
-            <div v-if="!project.image" class="text-4xl sm:text-5xl md:text-6xl opacity-50 group-hover:scale-110 transition-transform duration-300">
-              {{ project.emoji }}
-            </div>
-            <img 
-              v-else
-              :src="project.image" 
-              :alt="project.title"
-              class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-
-          <!-- Project Content - More Compact -->
-          <div class="p-4 md:p-5 flex flex-col">
-            <div class="flex items-start justify-between mb-2 gap-2">
-              <h3 class="text-lg md:text-xl font-display font-bold gradient-text flex-1 group-hover:text-primary transition-colors duration-300 leading-tight">
-                {{ project.title }}
-              </h3>
-              <div v-if="project.featured" class="ml-2 px-2 py-0.5 text-xs font-bold rounded-full bg-primary/20 text-primary border border-primary/30 flex-shrink-0">
-                Destaque
-              </div>
-            </div>
-            
-            <p class="text-xs sm:text-sm text-text-light/70 mb-3 line-clamp-2 leading-relaxed">
-              {{ project.description }}
-            </p>
-            
-            <!-- Tech Stack - Compact -->
-            <div class="flex flex-wrap gap-1.5 mb-3 md:mb-4">
-              <span 
-                v-for="tech in project.tech.slice(0, 3)" 
-                :key="tech"
-                class="px-2 py-0.5 text-xs font-medium rounded-md bg-primary/10 text-primary border border-primary/20"
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article v-for="(project, index) in projects" :key="project.title" class="surface p-6 flex flex-col">
+          <!-- Mídia: proporção e tratamento iguais em todo card, print real quando existir. -->
+          <div class="aspect-video rounded-xl overflow-hidden bg-ink border border-ink-line mb-4 flex-shrink-0">
+            <picture v-if="project.image">
+              <source :srcset="project.image.webp" type="image/webp">
+              <img
+                :src="project.image.fallback"
+                :alt="project.image.alt"
+                width="800"
+                height="450"
+                :loading="index === 0 ? 'eager' : 'lazy'"
+                class="w-full h-full object-cover"
               >
-                {{ tech }}
-              </span>
-              <span v-if="project.tech.length > 3" class="px-2 py-0.5 text-xs font-medium rounded-md bg-white/5 text-text-light/60">
-                +{{ project.tech.length - 3 }}
-              </span>
+            </picture>
+            <div v-else class="w-full h-full flex flex-col items-center justify-center gap-2 text-muted">
+              <Icon name="layout" class="w-6 h-6" />
+              <span class="text-body-xs">Print em breve</span>
             </div>
-            
-            <!-- Button - More Subtle -->
-            <a 
-              :href="project.link || '#'" 
-              target="_blank"
-              class="inline-flex items-center justify-center gap-2 w-full px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold rounded-lg bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 hover:border-primary/50 transition-all duration-300 group/btn"
-            >
-              <span>Ver Projeto</span>
-              <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform duration-300"></i>
-            </a>
           </div>
 
-          <!-- Subtle Hover Border Effect -->
-          <div class="absolute inset-0 rounded-xl border-2 border-primary/0 group-hover:border-primary/20 transition-all duration-300 pointer-events-none"></div>
-        </div>
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <h3 class="font-display text-display-md text-paper">{{ project.title }}</h3>
+            <span v-if="project.badge" class="badge-solid flex-shrink-0">{{ project.badge }}</span>
+          </div>
+
+          <!-- Card ainda em elaboração: sem dados suficientes para um case study completo. -->
+          <template v-if="project.wip">
+            <p class="text-body-sm text-muted leading-relaxed flex-1 flex items-start">
+              Estudo de caso em elaboração.
+            </p>
+            <!-- PERGUNTAR AO MARCOS: contexto (marca/produto e público-alvo), decisões de
+                 design (paleta, tipografia, layout), stack usada e link ao vivo do Jaguar Energy Drink. -->
+          </template>
+
+          <template v-else>
+            <dl class="space-y-3 text-body-sm mb-4 flex-1">
+              <div>
+                <dt class="text-accent font-mono text-body-xs uppercase tracking-wider mb-1">Contexto</dt>
+                <dd class="text-muted leading-relaxed">{{ project.context }}</dd>
+              </div>
+              <div>
+                <dt class="text-accent font-mono text-body-xs uppercase tracking-wider mb-1">Decisões</dt>
+                <dd class="text-muted leading-relaxed">{{ project.decisions }}</dd>
+              </div>
+              <div>
+                <dt class="text-accent font-mono text-body-xs uppercase tracking-wider mb-1">Resultado</dt>
+                <dd class="text-muted leading-relaxed">{{ project.result }}</dd>
+              </div>
+            </dl>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span v-for="tech in project.tech" :key="tech" class="tag">{{ tech }}</span>
+            </div>
+
+            <a
+              v-if="project.link"
+              :href="project.link"
+              target="_blank"
+              rel="noopener"
+              class="btn-secondary w-full text-body-sm"
+            >
+              {{ project.linkLabel }}
+              <Icon name="arrow-right" class="w-4 h-4" />
+            </a>
+            <p v-else-if="project.sourceNote" class="text-body-sm text-muted italic">
+              {{ project.sourceNote }}
+            </p>
+          </template>
+        </article>
       </div>
+
+      <!--
+        PERGUNTAR AO MARCOS (não inventar números, links ou resultados até confirmação):
+        - Arara Delivery: link ao vivo definitivo; 1-2 métricas reais de uso (nº de
+          estabelecimentos, pedidos) se houver; 2-3 screenshots reais do produto
+          (dashboard, tela de pedido) — é o único material visual possível já que o
+          código é fechado.
+        - Fluo: link do repositório público no GitHub; stack exata (backend, banco de
+          dados, como a IA foi integrada); métricas de contribuição (contribuidores,
+          estrelas, issues fechadas) se houver; screenshot da plataforma.
+        - Green Factory 5.0: link de repositório específico, se público; screenshot.
+        - Jaguar Energy Drink: todo o conteúdo (ver comentário no card acima).
+        - Site Ambiente Parintins: confirmar se ainda está no ar e link de acesso atual;
+          screenshot. Mantive este projeto na lista mesmo não estando no novo
+          enquadramento pedido — remova se não fizer mais sentido no destaque principal.
+        - Casa de Acolhida (Parintins) e DevConnect: aguardando Marcos detalhar contexto,
+          decisões, stack e resultado de cada um antes de virarem cards.
+        - Não incluir aqui projetos de exercício (Calculadora, Relogio_digital,
+          Marcos-Fotos, Login-System-Temperature-search) — ficam só no GitHub.
+      -->
     </div>
   </section>
 </template>
 
 <script setup>
 import { useScrollAnimation } from '../composables/useScrollAnimation'
+import Icon from './Icon.vue'
 
 const { elementRef: portfolioSection } = useScrollAnimation()
 
+const GITHUB_REPOS = 'https://github.com/marcossouzatavares23?tab=repositories'
+
 const projects = [
   {
-    title: 'Green Factory 5.0',
-    description: 'Sistema produtivo inteligente para uma movelaria no interior do Amazonas, voltado à Indústria 4.0, em parceria com UEA, CITS, Copal e Fadect.',
-    tech: ['Indústria 4.0', 'Front-End', 'Sustentabilidade'],
+    title: 'Arara Delivery',
+    badge: 'Cofundador · Em produção',
+    context: 'Plataforma de delivery em produção, criada para dar a estabelecimentos de Manaus uma solução própria de pedidos online.',
+    decisions: 'Como cofundador e desenvolvedor front-end, defini a arquitetura de frontend do produto — React.js, Next.js e TypeScript com Tailwind CSS — priorizando performance e organização de componentes para sustentar o crescimento do produto.',
+    result: 'Em produção, com estabelecimentos parceiros reais usando a plataforma.',
+    tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    link: null,
+    sourceNote: 'Código fechado — produto comercial.',
     image: null,
-    link: 'https://github.com/Marcossouzatavares?tab=repositories',
-    featured: true,
-    emoji: '🏭',
-    gradient: 'from-primary/15 to-sky-600/10'
   },
   {
-    title: 'Arara Delivery',
-    description: 'Plataforma de delivery desenvolvida como projeto pessoal, com arquitetura de frontend moderna.',
-    tech: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    title: 'Fluo',
+    badge: 'Open Source',
+    context: 'Plataforma fullstack para ensino de inglês, com metodologias de estudo estruturadas e integração de IA para apoiar o aprendizado.',
+    decisions: 'Arquitetura fullstack conectando backend e frontend, com banco de dados próprio e integração de IA no fluxo de estudo. Mantido como projeto de código aberto.',
+    result: 'Código aberto no GitHub, recebendo contribuições externas de outros desenvolvedores.',
+    tech: ['Full-Stack', 'IA', 'Banco de Dados'],
+    link: null,
+    linkLabel: 'Ver repositório',
+    sourceNote: 'Repositório público no GitHub — link em breve.',
     image: null,
-    link: 'https://github.com/Marcossouzatavares?tab=repositories',
-    featured: false,
-    emoji: '🚀',
-    gradient: 'from-secondary/15 to-violet-600/10'
+  },
+  {
+    title: 'Green Factory 5.0',
+    badge: null,
+    context: 'Movelaria no interior do Amazonas precisava de um sistema produtivo inteligente alinhado a princípios de Indústria 4.0, em parceria com UEA, CITS, Copal e Fadect.',
+    decisions: 'Atuação no front-end da solução, priorizando interface clara para operadores da fábrica e integração com o restante do sistema produtivo.',
+    result: 'Projeto entregue em parceria acadêmica-institucional (2024–2025). Métricas de impacto ainda não publicadas.',
+    tech: ['Indústria 4.0', 'Front-End', 'Sustentabilidade'],
+    link: GITHUB_REPOS,
+    linkLabel: 'Ver repositórios',
+    image: null,
+  },
+  {
+    title: 'Jaguar Energy Drink',
+    badge: 'UX/UI',
+    wip: true,
+    image: null,
   },
   {
     title: 'Site Ambiente Parintins',
-    description: 'Sistema desenvolvido em parceria com IFAM e a Prefeitura Municipal de Parintins, com foco em sustentabilidade ambiental.',
+    badge: null,
+    context: 'Prefeitura Municipal de Parintins e o IFAM precisavam de um canal digital voltado à sustentabilidade ambiental do município.',
+    decisions: 'Desenvolvimento do front-end do sistema em parceria institucional, com foco em clareza de informação para o público local.',
+    result: 'Sistema entregue à Prefeitura. Status atual no ar e link de acesso pendentes de confirmação.',
     tech: ['Front-End', 'Sustentabilidade Ambiental'],
+    link: GITHUB_REPOS,
+    linkLabel: 'Ver repositórios',
     image: null,
-    link: 'https://github.com/Marcossouzatavares?tab=repositories',
-    featured: false,
-    emoji: '🌱',
-    gradient: 'from-accent/15 to-emerald-600/10'
-  }
+  },
 ]
 </script>

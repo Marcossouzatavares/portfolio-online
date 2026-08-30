@@ -1,182 +1,76 @@
-# Portfolio - Marcos de Souza Tavares
+# Portfolio — Marcos de Souza Tavares
 
-Portfolio pessoal moderno desenvolvido com Vue.js 3, Tailwind CSS e efeitos profissionais de nível sênior.
+Portfolio pessoal de Marcos de Souza Tavares, Desenvolvedor Front-End, construído com Vue 3 (Composition API), Tailwind CSS e Vite.
 
-Acesse aqui: https://portfolio-online-mst.netlify.app/
+Acesse aqui: https://marcossouzatavares.github.io/portfolio-online/
 
-## 🚀 Tecnologias
+## Tecnologias
 
-- **Vue.js 3** - Framework JavaScript progressivo com Composition API
-- **Tailwind CSS** - Framework CSS utility-first para design moderno
-- **Vite** - Build tool rápida e otimizada
-- **Font Awesome** - Ícones profissionais
-- **Google Fonts** - Tipografia (Poppins e Montserrat)
+- **Vue.js 3** — Composition API
+- **Tailwind CSS** — design tokens (cores, tipografia e espaçamento) centralizados em `tailwind.config.js`
+- **Vite** — build e dev server
+- Ícones em SVG inline (`src/components/Icon.vue`) — sem dependência de biblioteca de ícones externa
 
-## ✨ Recursos e Efeitos Modernos
+## Direção de design — "Sinal"
 
-### Efeitos Visuais Implementados
+Fundo grafite neutro, texto papel quente e um único acento (âmbar) usado como indicador — inspirado nos indicadores de painel de controle dos projetos de automação industrial do Marcos (Green Factory 5.0). Só dois efeitos de interação: revelação por scroll (`IntersectionObserver`, respeitando `prefers-reduced-motion`) e uma microinteração de hover consistente em elementos clicáveis.
 
-1. **Glassmorphism**
-   - Efeitos de vidro fosco com backdrop-blur
-   - Bordas translúcidas e transparências suaves
-   - Cards com efeito de profundidade
+- **Cores**: `ink` (#0E1116), `ink-soft`, `paper` (#F5F3EE), `muted`, `accent` (#E8A33D) — ver `tailwind.config.js`.
+- **Tipografia**: Space Grotesk (títulos) + IBM Plex Sans/Mono (texto e rótulos técnicos).
+- **Motivo visual único**: rótulo mono "01 — Nome da seção" antes de cada `h2`, sem repetir efeito decorativo por seção.
 
-2. **Animações de Gradiente**
-   - Textos com gradiente animado
-   - Efeito shimmer em textos
-   - Botões com gradientes dinâmicos
-
-3. **Efeitos 3D**
-   - Cards com hover 3D (perspectiva e rotação)
-   - Transformações suaves em elementos interativos
-   - Efeitos de profundidade e elevação
-
-4. **Micro-animações (Micro-delights)**
-   - Animações sutis em botões (scale, shadow)
-   - Feedback visual em elementos interativos
-   - Transições suaves entre estados
-
-5. **Efeitos Aurora e Partículas**
-   - Background com efeito aurora animado
-   - Partículas flutuantes na seção de projetos
-   - Gradientes orbitais animados
-
-6. **Animações de Texto**
-   - Texto cinético com efeito shimmer
-   - Animações de entrada suaves (fade-in, slide-up)
-   - Efeitos de brilho e glow
-
-7. **Bento Grid Layout**
-   - Layout estilo "Bento Box" para projetos
-   - Grid responsivo e adaptável
-   - Cards destacados (featured) com tamanho maior
-
-8. **Scroll Storytelling**
-   - Animações baseadas em Intersection Observer
-   - Elementos aparecem conforme o scroll
-   - Transições suaves entre seções
-
-## 📦 Instalação
-
-1. Clone o repositório ou navegue até a pasta do projeto
-2. Instale as dependências:
+## Instalação
 
 ```bash
 npm install
 ```
 
-## 🛠️ Comandos Disponíveis
+## Comandos
 
-### Desenvolvimento
 ```bash
-npm run dev
-```
-Inicia o servidor de desenvolvimento na porta 3000
-
-### Build para Produção
-```bash
-npm run build
-```
-Gera os arquivos otimizados na pasta `dist/`
-
-### Preview da Build
-```bash
-npm run preview
-```
-Visualiza a build de produção localmente
-
-## 📁 Estrutura do Projeto
-
-```
-portfolio-vue/
-├── public/              # Arquivos estáticos (imagens, etc)
-│   └── Marcos.jpg
-├── src/
-│   ├── assets/          # Recursos (CSS global com Tailwind)
-│   │   └── style.css
-│   ├── components/      # Componentes Vue
-│   │   ├── Header.vue   # Header com menu responsivo e glassmorphism
-│   │   ├── Hero.vue     # Hero com efeitos aurora e gradientes animados
-│   │   ├── About.vue    # Sobre com cards glassmorphism
-│   │   ├── Skills.vue   # Habilidades com cards 3D
-│   │   ├── Portfolio.vue # Projetos com Bento Grid e efeitos de partículas
-│   │   ├── Contact.vue  # Contato com formulário e ícones animados
-│   │   └── Footer.vue   # Footer minimalista
-│   ├── composables/     # Composables reutilizáveis
-│   │   ├── useScrollAnimation.js
-│   │   └── useSmoothScroll.js
-│   ├── App.vue          # Componente raiz
-│   └── main.js          # Ponto de entrada
-├── index.html           # HTML principal
-├── package.json         # Dependências e scripts
-├── tailwind.config.js   # Configuração do Tailwind CSS
-├── postcss.config.js    # Configuração do PostCSS
-├── vite.config.js       # Configuração do Vite
-└── README.md            # Este arquivo
+npm run dev       # servidor de desenvolvimento
+npm run build     # build de produção em dist/
+npm run preview   # preview local da build
 ```
 
-## 🎨 Paleta de Cores
+## Estrutura
 
-O projeto usa uma paleta de cores moderna e profissional:
-
-- **Primary**: `#00BFFF` (Azul vibrante)
-- **Secondary**: `#FF7F50` (Laranja coral)
-- **Dark**: `#1A1A2E` (Fundo principal)
-- **Dark Secondary**: `#1F1F3D` (Fundo alternativo)
-- **Text Light**: `#F0F0F0` (Texto principal)
-
-## 🎯 Características Especiais
-
-### Responsividade
-- Design mobile-first
-- Breakpoints otimizados para todos os dispositivos
-- Menu mobile com animações suaves
-
-### Performance
-- Lazy loading de componentes
-- Animações otimizadas com CSS
-- Build otimizado com Vite
-
-### Acessibilidade
-- Labels ARIA apropriados
-- Navegação por teclado
-- Contraste adequado de cores
-- Estrutura semântica HTML
-
-## 🔧 Personalização
-
-### Cores
-As cores podem ser alteradas no arquivo `tailwind.config.js`:
-
-```javascript
-colors: {
-  primary: '#00BFFF',
-  secondary: '#FF7F50',
-  // ... outras cores
-}
+```
+src/
+├── assets/style.css           # tokens base, .section, .surface, .kicker, etc.
+├── components/
+│   ├── Header.vue / Footer.vue / BackToTop.vue
+│   ├── Hero.vue / About.vue / Experience.vue / Skills.vue / Portfolio.vue / Contact.vue
+│   └── Icon.vue                # ícones SVG inline, um único componente
+├── composables/
+│   ├── useScrollAnimation.js   # revelação por IntersectionObserver
+│   └── useSmoothScroll.js      # navegação por âncora com offset do header fixo
+├── App.vue
+└── main.js
+public/
+├── favicon.svg
+├── robots.txt
+├── sitemap.xml
+└── eupc.webp / eupc-fallback.jpg
 ```
 
-### Animações
-As animações podem ser ajustadas no arquivo `tailwind.config.js` dentro da seção `keyframes` e `animation`.
+## Acessibilidade e SEO
 
-### Componentes
-Todos os componentes são modulares e podem ser facilmente personalizados. Cada componente usa estilos scoped e classes Tailwind.
+- Único `h1` (Hero), hierarquia de heading correta em todas as seções.
+- Foco visível (`:focus-visible`) em todo elemento interativo.
+- Contraste de todos os tokens de texto verificado contra WCAG AA (`muted` ≈ 6.7:1, `accent` ≈ 8.7:1 sobre `ink`).
+- Meta tags completas (description, Open Graph, Twitter Card, canonical) e dados estruturados `schema.org/Person` em `index.html`.
+- Auditoria Lighthouse (build de produção): Performance 94, Acessibilidade 100, Boas Práticas 100, SEO 100.
 
-## 📝 Notas
+## Pendências conhecidas
 
-- A imagem `Marcos.jpg` deve estar na pasta `public/` para ser acessível
-- O projeto usa variáveis CSS para fácil customização
-- Todos os componentes são modulares e podem ser facilmente modificados
+Sinalizadas em comentários no código (`Skills.vue`, `Portfolio.vue`) — aguardando confirmação de dados reais antes de finalizar:
+- Nível real de TypeScript/testes/CI-CD e se GraphQL/Prisma devem ser mantidos.
+- Links de repositório/demo específicos para Green Factory 5.0, Arara Delivery e Site Ambiente Parintins.
+- Botão de download de CV em PDF (aguardando arquivo).
 
-## 🌟 Inspirações e Referências
+Ver também `github-checklist.md` para recomendações do perfil GitHub.
 
-Este projeto foi desenvolvido seguindo as tendências de 2026:
-- Magic UI - Componentes com animações avançadas
-- Aceternity UI - Efeitos visuais tipo Apple
-- Glassmorphism e Soft Transparency
-- Micro-delights em interações
-- Bento Grid Layouts
+## Licença
 
-## 📄 Licença
-
-Este projeto é pessoal e não possui licença específica.
+Projeto pessoal, sem licença específica.
